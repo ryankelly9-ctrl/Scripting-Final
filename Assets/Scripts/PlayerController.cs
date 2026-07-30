@@ -10,7 +10,7 @@ public class PlayerController : MonoBehaviour
     private float verticalInput;
     private float horizontalInput;
 
-    public Camera playerCamera;
+    public Camera PlayerCamera;
     public LayerMask defaultLayer;
     private float lookDirectionY = 0f;
 
@@ -52,7 +52,7 @@ public class PlayerController : MonoBehaviour
 
     private void HandleRotation()
     {
-        Ray rayCast = playerCamera.ScreenPointToRay(Input.mousePosition);
+        Ray rayCast = PlayerCamera.ScreenPointToRay(Input.mousePosition);
 
         // Raycast to check where the mouse position is in the world then rotate the player towards it.
         if (Physics.Raycast(rayCast, out RaycastHit hit, Mathf.Infinity, defaultLayer))
@@ -60,6 +60,7 @@ public class PlayerController : MonoBehaviour
             Vector3 direction = hit.point - transform.position;
             direction.y = lookDirectionY;
 
+            // Checking the mouse direction and turning the player object to face it.
             if (direction != Vector3.zero)
             {
                 Quaternion targetRotation = Quaternion.LookRotation(direction);

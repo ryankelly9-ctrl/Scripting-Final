@@ -7,10 +7,8 @@ public class Enemy : MonoBehaviour
 
     [SerializeField] private EnemyType type;
 
-    [SerializeField] private Transform player;
+    public Transform Player;
     private NavMeshAgent navAgent;
-
-    private EnemySpawner spawner;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -21,6 +19,6 @@ public class Enemy : MonoBehaviour
     // Enemy navigates to player and updates position every frame
     void Update()
     {
-        navAgent.SetDestination(player.position);
+        navAgent.SetDestination(Player.position);
     }
 }
