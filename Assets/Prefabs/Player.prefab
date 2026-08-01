@@ -271,7 +271,9 @@ MonoBehaviour:
   rb: {fileID: 4185355330044780262}
   moveSpeed: 10
   rotationSpeed: 15
-  playerCamera: {fileID: 0}
+  bulletPrefab: {fileID: 7110060498676032717, guid: 4ad8b89ebb7d9a046985bf5a90b6edd0, type: 3}
+  bulletDelay: 3
+  PlayerCamera: {fileID: 0}
   defaultLayer:
     serializedVersion: 2
     m_Bits: 1

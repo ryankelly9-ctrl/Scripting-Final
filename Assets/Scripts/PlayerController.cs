@@ -7,6 +7,10 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float moveSpeed;
     [SerializeField] private float rotationSpeed;
 
+    [SerializeField] private GameObject bulletPrefab;
+    [SerializeField] private float bulletDelay = 3.0f;
+    [SerializeField] private Transform fireOrigin;
+
     private float verticalInput;
     private float horizontalInput;
 
@@ -35,6 +39,8 @@ public class PlayerController : MonoBehaviour
         {
             HandleMovement();
             HandleRotation();
+            bulletDelay -= 0.1f;
+            HandleFiring();
         }
     }
 
@@ -66,6 +72,29 @@ public class PlayerController : MonoBehaviour
                 Quaternion targetRotation = Quaternion.LookRotation(direction);
                 transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * rotationSpeed);
             }
+        }
+    }
+
+    // Fire Input
+    private void HandleFiring()
+    {
+        if (Input.GetButton("Fire1") && bulletDelay <= 0.0f)
+        {
+            BulletFire();
+            bulletDelay = 3.0f;
+        }
+    }
+
+    // Bullet Instantiation
+    private void BulletFire()
+    {
+        if (bulletPrefab == null)
+        {
+            return;
+        }
+        if (bulletPrefab != null)
+        {
+            GameObject bullet = Instantiate(bulletPrefab, fireOrigin.position, fireOrigin.rotation);
         }
     }
 }

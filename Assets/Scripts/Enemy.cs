@@ -21,4 +21,12 @@ public class Enemy : MonoBehaviour
     {
         navAgent.SetDestination(Player.position);
     }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Bullet"))
+        {
+            Destroy(gameObject);
+        }
+    }
 }
