@@ -18,14 +18,12 @@ public class PlayerController : MonoBehaviour
     public LayerMask defaultLayer;
     private float lookDirectionY = 0f;
 
-    public bool isDead;
-
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-
-        isDead = false;
+        GameManager._GameManager.IsDead = false;
+        GameManager._GameManager.CurrentPlayerHealth = GameManager._GameManager.StartingPlayerHealth;
     }
 
     // Update is called once per frame
@@ -35,7 +33,7 @@ public class PlayerController : MonoBehaviour
         horizontalInput = Input.GetAxis("Horizontal");
 
         // If NOT dead, can move and stuff
-        if (!isDead)
+        if (!GameManager._GameManager.IsDead)
         {
             HandleMovement();
             HandleRotation();
@@ -95,6 +93,15 @@ public class PlayerController : MonoBehaviour
         if (bulletPrefab != null)
         {
             GameObject bullet = Instantiate(bulletPrefab, fireOrigin.position, fireOrigin.rotation);
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if(collision.gameObject.CompareTag("Enemy"))
+        {
+            GameManager._GameManager.PlayerHitByEnemy();
+            Destroy(collision.gameObject);
         }
     }
 }
