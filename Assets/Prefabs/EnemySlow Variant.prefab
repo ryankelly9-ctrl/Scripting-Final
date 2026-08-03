@@ -56,6 +56,26 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 1570832978719051753, guid: be9585a4009771a43a164762e3a52145, type: 3}
+      propertyPath: FoeType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1570832978719051753, guid: be9585a4009771a43a164762e3a52145, type: 3}
+      propertyPath: KillValue
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1570832978719051753, guid: be9585a4009771a43a164762e3a52145, type: 3}
+      propertyPath: MaxHealth
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1570832978719051753, guid: be9585a4009771a43a164762e3a52145, type: 3}
+      propertyPath: MoveSpeed
+      value: 3.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1570832978719051753, guid: be9585a4009771a43a164762e3a52145, type: 3}
+      propertyPath: EnemyMoveSpeed
+      value: 3.5
+      objectReference: {fileID: 0}
     - target: {fileID: 5595997911633075700, guid: be9585a4009771a43a164762e3a52145, type: 3}
       propertyPath: m_Speed
       value: 3.5

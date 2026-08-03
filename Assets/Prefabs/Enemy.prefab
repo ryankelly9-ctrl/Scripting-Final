@@ -150,5 +150,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8f5ef4500d2b5642ac097a7eb064a36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
-  type: 1
+  FoeType: 1
+  EnemyMaxHealth: 1
+  EnemyMoveSpeed: 5
+  KillValue: 3
   Player: {fileID: 0}

@@ -1574,13 +1574,38 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5485823933136131061, guid: 1bf4adfd37a2dfc41a685a64ed17fa9c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 559077790}
   m_SourcePrefab: {fileID: 100100000, guid: 1bf4adfd37a2dfc41a685a64ed17fa9c, type: 3}
 --- !u!4 &559077788 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 626392740034125853, guid: 1bf4adfd37a2dfc41a685a64ed17fa9c, type: 3}
   m_PrefabInstance: {fileID: 559077787}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &559077789 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5485823933136131061, guid: 1bf4adfd37a2dfc41a685a64ed17fa9c, type: 3}
+  m_PrefabInstance: {fileID: 559077787}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &559077790
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 559077789}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 401b151482f0f494f91b861c07c7ecb0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemySpawner
+  enemyPrefab: {fileID: 5971905889152910199, guid: be9585a4009771a43a164762e3a52145, type: 3}
+  maxEnemyCount: 100
+  enemyAmountPerSpawn: 5
+  spawnDelayTime: 3
+  player: {fileID: 1142776952}
 --- !u!1 &603797850
 GameObject:
   m_ObjectHideFlags: 0
@@ -2641,6 +2666,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 4317922098820180759, guid: d92efca359c8912409770f6d32550d3d, type: 3}
+      propertyPath: PlayerCamera
+      value: 
+      objectReference: {fileID: 1103424894}
+    - target: {fileID: 4317922098820180759, guid: d92efca359c8912409770f6d32550d3d, type: 3}
       propertyPath: playerCamera
       value: 
       objectReference: {fileID: 1103424894}
@@ -2883,6 +2912,59 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8346176923998030260, guid: aa4ce56813cd691479984f450998e776, type: 3}
   m_PrefabInstance: {fileID: 1568163977}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1586413883
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1586413885}
+  - component: {fileID: 1586413884}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1586413884
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1586413883}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 295e877dfa9ec334595e9fc1017f8ab5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GameManager
+  StartingPlayerHealth: 5
+  CurrentPlayerHealth: 0
+  CurrentEnemyHealth: 0
+  StartingKillCount: 0
+  CurrentKillCount: 0
+  PlayerWeaponDamage: 1
+  EnemyDamage: 1
+  IsDead: 0
+  enemyScript: {fileID: 1570832978719051753, guid: be9585a4009771a43a164762e3a52145, type: 3}
+--- !u!4 &1586413885
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1586413883}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.80409, y: 0, z: 3.66404}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1607818016
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3470,13 +3552,38 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5485823933136131061, guid: 1bf4adfd37a2dfc41a685a64ed17fa9c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1818718651}
   m_SourcePrefab: {fileID: 100100000, guid: 1bf4adfd37a2dfc41a685a64ed17fa9c, type: 3}
 --- !u!4 &1818718649 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 626392740034125853, guid: 1bf4adfd37a2dfc41a685a64ed17fa9c, type: 3}
   m_PrefabInstance: {fileID: 1818718648}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1818718650 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5485823933136131061, guid: 1bf4adfd37a2dfc41a685a64ed17fa9c, type: 3}
+  m_PrefabInstance: {fileID: 1818718648}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1818718651
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1818718650}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 401b151482f0f494f91b861c07c7ecb0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemySpawner
+  enemyPrefab: {fileID: 5971905889152910199, guid: be9585a4009771a43a164762e3a52145, type: 3}
+  maxEnemyCount: 100
+  enemyAmountPerSpawn: 5
+  spawnDelayTime: 3
+  player: {fileID: 1142776952}
 --- !u!1001 &1832554602
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4218,3 +4325,4 @@ SceneRoots:
   - {fileID: 1760732366}
   - {fileID: 969020926}
   - {fileID: 1449421176}
+  - {fileID: 1586413885}

@@ -24,6 +24,7 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         GameManager._GameManager.IsDead = false;
         GameManager._GameManager.CurrentPlayerHealth = GameManager._GameManager.StartingPlayerHealth;
+        GameManager._GameManager.CurrentKillCount = GameManager._GameManager.StartingKillCount;
     }
 
     // Update is called once per frame
