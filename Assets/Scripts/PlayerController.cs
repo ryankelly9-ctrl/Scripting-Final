@@ -9,6 +9,9 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] private GameObject bulletPrefab;
     [SerializeField] private float bulletDelay = 3.0f;
+    private float bulletDelayReset = 3.0f;
+    private float bulletDelayCountdown = 0.1f;
+    private float bulletDelayGoal = 0.0f;
     [SerializeField] private Transform fireOrigin;
 
     private float verticalInput;
@@ -38,7 +41,10 @@ public class PlayerController : MonoBehaviour
         {
             HandleMovement();
             HandleRotation();
-            bulletDelay -= 0.1f;
+            if (bulletDelay > bulletDelayGoal)
+            {
+                bulletDelay -= bulletDelayCountdown;
+            }
             HandleFiring();
         }
     }
@@ -77,10 +83,10 @@ public class PlayerController : MonoBehaviour
     // Fire Input
     private void HandleFiring()
     {
-        if (Input.GetButton("Fire1") && bulletDelay <= 0.0f)
+        if (Input.GetButton("Fire1") && bulletDelay <= bulletDelayGoal)
         {
             BulletFire();
-            bulletDelay = 3.0f;
+            bulletDelay = bulletDelayReset;
         }
     }
 

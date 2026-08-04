@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -10,6 +11,8 @@ public class GameManager : MonoBehaviour
     public float CurrentEnemyHealth;
     public int StartingKillCount = 0;
     public int CurrentKillCount;
+    private int lastKillCap = 0;
+    private const int killsPerArea = 250;
 
     public float PlayerWeaponDamage = 1;
     public float EnemyDamage = 1;
@@ -48,6 +51,11 @@ public class GameManager : MonoBehaviour
         if(CurrentEnemyHealth <= 0)
         {
             GameManager._GameManager.CurrentKillCount += enemyScript.KillValue;
+            if (CurrentKillCount / killsPerArea > lastKillCap)
+            {
+                lastKillCap = CurrentKillCount / killsPerArea;
+                LoadNextArea();
+            }
         }
     }
 
@@ -55,5 +63,20 @@ public class GameManager : MonoBehaviour
     {
         yield return new WaitForSeconds(delayTime);
         Destroy(gameObject);
+    }
+
+    void LoadNextArea()
+    {
+        int nextAreaIndex = SceneManager.GetActiveScene().buildIndex + 1;
+
+        if (nextAreaIndex < SceneManager.sceneCountInBuildSettings)
+        {
+            SceneManager.LoadScene(nextAreaIndex);
+        }
+        else
+        {
+
+            // transition text appear here
+        }
     }
 }

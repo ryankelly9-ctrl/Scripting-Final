@@ -305,6 +305,7 @@ MonoBehaviour:
   rotationSpeed: 15
   bulletPrefab: {fileID: 7110060498676032717, guid: 4ad8b89ebb7d9a046985bf5a90b6edd0, type: 3}
   bulletDelay: 3
+  bulletDelayReset: 3
   fireOrigin: {fileID: 4522330976237518776}
   PlayerCamera: {fileID: 0}
   defaultLayer:
