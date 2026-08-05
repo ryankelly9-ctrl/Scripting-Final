@@ -10,6 +10,7 @@ public class Enemy : MonoBehaviour
     public float EnemyMoveSpeed;
     public int KillValue;
 
+    [Header ("Components")]
     public Transform Player;
     private NavMeshAgent navAgent;
 

@@ -4,12 +4,15 @@ using static UnityEngine.GraphicsBuffer;
 
 public class CameraController : MonoBehaviour
 {
+    [Header ("Misc.")]
     [SerializeField] private Transform player;
     [SerializeField] private float cameraSmoothingDelay;
 
+    [Header ("Vectors and Math")]
     [SerializeField] private Vector3 cameraOffset;
     private Vector3 currentSpeed = Vector3.zero;
 
+    [Header ("Coordinates")]
     [SerializeField] private float cameraPosCoordX;
     [SerializeField] private float cameraPosCoordY;
     [SerializeField] private float cameraPosCoordZ;

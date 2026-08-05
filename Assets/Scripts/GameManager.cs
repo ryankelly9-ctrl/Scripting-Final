@@ -6,20 +6,25 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager _GameManager { get; private set; }
 
+    [Header ("Variables KillCount/Health")]
     public float StartingPlayerHealth = 5;
     public float CurrentPlayerHealth;
+    public float deadHealthAmount = 0f;
     public float CurrentEnemyHealth;
     public int StartingKillCount = 0;
     public int CurrentKillCount;
     private int lastKillCap = 0;
     private const int killsPerArea = 250;
 
+    [Header ("Adjustibles")]
     public float PlayerWeaponDamage = 1;
     public float EnemyDamage = 1;
 
     public bool IsDead;
 
+    [Header ("Other Scripts")]
     [SerializeField] private Enemy enemyScript;
+    [SerializeField] private PlayerController playerControllerScript;
     private void Awake()
     {
         if (_GameManager && _GameManager != this)
@@ -39,16 +44,24 @@ public class GameManager : MonoBehaviour
     public void PlayerHitByEnemy()
     {
         CurrentPlayerHealth -= EnemyDamage;
-        if(CurrentPlayerHealth <= 0)
+        if (playerControllerScript.playerAnimator != null)
+        {
+            playerControllerScript.playerAnimator.SetTrigger("IsHit");
+        }
+        if(CurrentPlayerHealth <= deadHealthAmount)
         {
             IsDead = true;
+            if (playerControllerScript.playerAnimator != null)
+            {
+                playerControllerScript.playerAnimator.SetTrigger("IsDead");
+            }
         }
     }
 
     public void EnemyHitByPlayer()
     {
         CurrentEnemyHealth -= PlayerWeaponDamage;
-        if(CurrentEnemyHealth <= 0)
+        if(CurrentEnemyHealth <= deadHealthAmount)
         {
             GameManager._GameManager.CurrentKillCount += enemyScript.KillValue;
             if (CurrentKillCount / killsPerArea > lastKillCap)

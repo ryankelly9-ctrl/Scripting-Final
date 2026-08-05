@@ -3,10 +3,13 @@ using UnityEngine.Rendering.Universal.Internal;
 
 public class PlayerController : MonoBehaviour
 {
+    [Header("Rigidbody and Movement")]
     [SerializeField] private Rigidbody rb;
     [SerializeField] private float moveSpeed;
     [SerializeField] private float rotationSpeed;
+    private float noMovement = 0.0f;
 
+    [Header("Firing")]
     [SerializeField] private GameObject bulletPrefab;
     [SerializeField] private float bulletDelay = 3.0f;
     private float bulletDelayReset = 3.0f;
@@ -14,12 +17,16 @@ public class PlayerController : MonoBehaviour
     private float bulletDelayGoal = 0.0f;
     [SerializeField] private Transform fireOrigin;
 
+    [Header("Input")]
     private float verticalInput;
     private float horizontalInput;
 
+    [Header("Components and Dependencies")]
     public Camera PlayerCamera;
     public LayerMask defaultLayer;
     private float lookDirectionY = 0f;
+    public Animator playerAnimator;
+    private bool isRunning;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -28,6 +35,7 @@ public class PlayerController : MonoBehaviour
         GameManager._GameManager.IsDead = false;
         GameManager._GameManager.CurrentPlayerHealth = GameManager._GameManager.StartingPlayerHealth;
         GameManager._GameManager.CurrentKillCount = GameManager._GameManager.StartingKillCount;
+        isRunning = true;
     }
 
     // Update is called once per frame
@@ -51,14 +59,21 @@ public class PlayerController : MonoBehaviour
 
     private void HandleMovement()
     {
-        if (Input.GetButton("Vertical"))
+        float HorizontalMove = Input.GetAxis("Horizontal");
+        float VerticalMove = Input.GetAxis("Vertical");
+
+        Vector3 playerMovement = new Vector3(HorizontalMove, noMovement, VerticalMove);
+        transform.Translate(playerMovement * moveSpeed * Time.deltaTime, Space.World);
+
+        if (HorizontalMove != noMovement || VerticalMove != noMovement)
         {
-            transform.Translate(Vector3.forward * moveSpeed * verticalInput * Time.deltaTime, Space.World);
+            playerAnimator.SetBool("IsRunning", isRunning);
         }
-        if (Input.GetButton("Horizontal"))
+        else
         {
-            transform.Translate(Vector3.right * moveSpeed * horizontalInput * Time.deltaTime, Space.World);
+            playerAnimator.SetBool("IsRunning", !isRunning);
         }
+
     }
 
     private void HandleRotation()

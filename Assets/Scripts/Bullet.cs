@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-
+    [Header ("Bullet Adjustibles")]
     [SerializeField] private float bulletSpeed;
     [SerializeField] private float bulletLifetime;
 
