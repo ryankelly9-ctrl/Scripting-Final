@@ -13,6 +13,10 @@ public class Enemy : MonoBehaviour
     [Header ("Components")]
     public Transform Player;
     private NavMeshAgent navAgent;
+    public Animator EnemyAnimator;
+
+    public bool enemyIsRunning;
+    [SerializeField] private float destroyDelaySeconds;
 
     private void Awake()
     {
@@ -23,13 +27,17 @@ public class Enemy : MonoBehaviour
     {
         navAgent.speed = EnemyMoveSpeed;
         GameManager._GameManager.CurrentEnemyHealth = EnemyMaxHealth;
-        
+        enemyIsRunning = true;
     }
 
     // Enemy navigates to player and updates position every frame
     void Update()
     {
         navAgent.SetDestination(Player.position);
+        if (EnemyAnimator != null)
+        {
+            EnemyAnimator.SetBool("EnemyIsRunning", enemyIsRunning);
+        }
     }
 
     // When the bullet hits the enemy, deal damage to the enemy and if the enemy dies add score
@@ -38,6 +46,7 @@ public class Enemy : MonoBehaviour
         if (collision.gameObject.CompareTag("Bullet"))
         {
             GameManager._GameManager.EnemyHitByPlayer();
+            GameManager._GameManager.DestroyDelay(destroyDelaySeconds);
             Destroy(gameObject);
         }
     }

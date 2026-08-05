@@ -25,6 +25,7 @@ public class GameManager : MonoBehaviour
     [Header ("Other Scripts")]
     [SerializeField] private Enemy enemyScript;
     [SerializeField] private PlayerController playerControllerScript;
+    [SerializeField] private Enemy enenmyScript;
     private void Awake()
     {
         if (_GameManager && _GameManager != this)
@@ -44,16 +45,16 @@ public class GameManager : MonoBehaviour
     public void PlayerHitByEnemy()
     {
         CurrentPlayerHealth -= EnemyDamage;
-        if (playerControllerScript.playerAnimator != null)
+        if (playerControllerScript.PlayerAnimator != null)
         {
-            playerControllerScript.playerAnimator.SetTrigger("IsHit");
+            playerControllerScript.PlayerAnimator.SetTrigger("IsHit");
         }
         if(CurrentPlayerHealth <= deadHealthAmount)
         {
             IsDead = true;
-            if (playerControllerScript.playerAnimator != null)
+            if (playerControllerScript.PlayerAnimator != null)
             {
-                playerControllerScript.playerAnimator.SetTrigger("IsDead");
+                playerControllerScript.PlayerAnimator.SetTrigger("IsDead");
             }
         }
     }
@@ -64,6 +65,10 @@ public class GameManager : MonoBehaviour
         if(CurrentEnemyHealth <= deadHealthAmount)
         {
             GameManager._GameManager.CurrentKillCount += enemyScript.KillValue;
+            if (enemyScript.EnemyAnimator != null)
+            {
+                enemyScript.EnemyAnimator.SetTrigger("EnemyIsDead");
+            }
             if (CurrentKillCount / killsPerArea > lastKillCap)
             {
                 lastKillCap = CurrentKillCount / killsPerArea;
@@ -75,7 +80,6 @@ public class GameManager : MonoBehaviour
     public IEnumerator DestroyDelay(float delayTime)
     {
         yield return new WaitForSeconds(delayTime);
-        Destroy(gameObject);
     }
 
     void LoadNextArea()

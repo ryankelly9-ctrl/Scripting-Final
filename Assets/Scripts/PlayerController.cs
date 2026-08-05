@@ -25,7 +25,7 @@ public class PlayerController : MonoBehaviour
     public Camera PlayerCamera;
     public LayerMask defaultLayer;
     private float lookDirectionY = 0f;
-    public Animator playerAnimator;
+    public Animator PlayerAnimator;
     private bool isRunning;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -67,11 +67,11 @@ public class PlayerController : MonoBehaviour
 
         if (HorizontalMove != noMovement || VerticalMove != noMovement)
         {
-            playerAnimator.SetBool("IsRunning", isRunning);
+            PlayerAnimator.SetBool("IsRunning", isRunning);
         }
         else
         {
-            playerAnimator.SetBool("IsRunning", !isRunning);
+            PlayerAnimator.SetBool("IsRunning", !isRunning);
         }
 
     }
@@ -123,6 +123,7 @@ public class PlayerController : MonoBehaviour
         if(collision.gameObject.CompareTag("Enemy"))
         {
             GameManager._GameManager.PlayerHitByEnemy();
+            GameManager._GameManager.EnemyHitByPlayer();
             Destroy(collision.gameObject);
         }
     }

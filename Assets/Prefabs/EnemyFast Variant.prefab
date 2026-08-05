@@ -50,7 +50,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1406259561946190463, guid: be9585a4009771a43a164762e3a52145, type: 3}
       propertyPath: m_ProvidesContacts
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1570832978719051753, guid: be9585a4009771a43a164762e3a52145, type: 3}
       propertyPath: type
