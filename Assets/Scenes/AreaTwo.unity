@@ -1387,6 +1387,119 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8346176923998030260, guid: aa4ce56813cd691479984f450998e776, type: 3}
   m_PrefabInstance: {fileID: 468142489}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &475225511
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 475225515}
+  - component: {fileID: 475225514}
+  - component: {fileID: 475225513}
+  - component: {fileID: 475225512}
+  m_Layer: 0
+  m_Name: Plane
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!64 &475225512
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 475225511}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!23 &475225513
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 475225511}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 0a42d2d43aedc474496f25ffdb25c86d, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_MaskInteraction: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &475225514
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 475225511}
+  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!4 &475225515
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 475225511}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -10, z: 0}
+  m_LocalScale: {x: 40, y: 0, z: 10}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &512196896
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2350,6 +2463,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6949143181547627036, guid: d92efca359c8912409770f6d32550d3d, type: 3}
   m_PrefabInstance: {fileID: 1449421176}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1142776953 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4317922098820180759, guid: d92efca359c8912409770f6d32550d3d, type: 3}
+  m_PrefabInstance: {fileID: 1449421176}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e803570668bb7ca4eb16456dcb279587, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerController
 --- !u!1 &1167524327
 GameObject:
   m_ObjectHideFlags: 0
@@ -2943,6 +3067,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
   StartingPlayerHealth: 5
   CurrentPlayerHealth: 0
+  deadHealthAmount: 0
   CurrentEnemyHealth: 0
   StartingKillCount: 0
   CurrentKillCount: 0
@@ -2950,6 +3075,8 @@ MonoBehaviour:
   EnemyDamage: 1
   IsDead: 0
   enemyScript: {fileID: 1570832978719051753, guid: be9585a4009771a43a164762e3a52145, type: 3}
+  playerControllerScript: {fileID: 1142776953}
+  enenmyScript: {fileID: 0}
 --- !u!4 &1586413885
 Transform:
   m_ObjectHideFlags: 0
@@ -4326,3 +4453,4 @@ SceneRoots:
   - {fileID: 969020926}
   - {fileID: 1449421176}
   - {fileID: 1586413885}
+  - {fileID: 475225515}

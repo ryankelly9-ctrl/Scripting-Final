@@ -267,7 +267,7 @@ ModelImporter:
       takeName: Idle_B
       internalID: 345275505875579249
       firstFrame: 0
-      lastFrame: 64
+      lastFrame: 32
       wrapMode: 0
       orientationOffsetY: 0
       level: 0

@@ -96,4 +96,15 @@ public class GameManager : MonoBehaviour
             // transition text appear here
         }
     }
+
+    // Menu stuff, all meant for button presses within the title
+    public void StartButton()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    }
+
+    public void QuitButton()
+    {
+        Application.Quit();
+    }
 }
