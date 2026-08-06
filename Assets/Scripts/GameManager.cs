@@ -1,4 +1,5 @@
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -22,6 +23,9 @@ public class GameManager : MonoBehaviour
 
     public bool IsDead;
 
+    public bool IsPaused = false;
+    public GameObject pauseMenuInterface;
+
     [Header ("Other Scripts")]
     [SerializeField] private Enemy enemyScript;
     [SerializeField] private PlayerController playerControllerScript;
@@ -40,6 +44,14 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         CurrentKillCount = StartingKillCount;
+    }
+
+    private void Update()
+    {
+        if (Input.GetButtonDown("Cancel"))
+        {
+            TogglePause();
+        }
     }
 
     public void PlayerHitByEnemy()
@@ -106,5 +118,21 @@ public class GameManager : MonoBehaviour
     public void QuitButton()
     {
         Application.Quit();
+    }
+
+    public void TogglePause()
+    {
+        IsPaused = !IsPaused;
+
+        if (IsPaused)
+        {
+            pauseMenuInterface.SetActive(true);
+            Time.timeScale = 0f;
+        }
+        else
+        {
+            pauseMenuInterface.SetActive(false);
+            Time.timeScale = 1f;
+        }
     }
 }
