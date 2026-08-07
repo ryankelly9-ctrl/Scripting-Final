@@ -46,7 +46,6 @@ public class Enemy : MonoBehaviour
         if (collision.gameObject.CompareTag("Bullet"))
         {
             GameManager._GameManager.EnemyHitByPlayer();
-            GameManager._GameManager.DestroyDelay(destroyDelaySeconds);
             Destroy(gameObject);
         }
     }

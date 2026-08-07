@@ -1,7 +1,10 @@
 using System.Collections;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+using UnityEngine.UIElements;
 
 public class GameManager : MonoBehaviour
 {
@@ -20,11 +23,20 @@ public class GameManager : MonoBehaviour
     [Header ("Adjustibles")]
     public float PlayerWeaponDamage = 1;
     public float EnemyDamage = 1;
+    public float DeathTime = 5.0f;
 
+    [Header ("Bools")]
     public bool IsDead;
-
     public bool IsPaused = false;
+
+    [Header ("Interface")]
     public GameObject pauseMenuInterface;
+    public TextMeshProUGUI KillCountText;
+    [SerializeField] private UnityEngine.UI.Image HealthOrb;
+    [SerializeField] private UnityEngine.UIElements.Slider loadingMeter;
+    [SerializeField] private TextMeshProUGUI loadingText;
+    [SerializeField] private GameObject loadingCanvas;
+    [SerializeField] private const float minimumLoadTime = 1.5f;
 
     [Header ("Other Scripts")]
     [SerializeField] private Enemy enemyScript;
@@ -39,6 +51,11 @@ public class GameManager : MonoBehaviour
         }
         _GameManager = this;
         DontDestroyOnLoad(gameObject);
+        
+        if (loadingCanvas != null)
+        {
+            loadingCanvas.SetActive(false);
+        }
     }
 
     private void Start()
@@ -52,11 +69,21 @@ public class GameManager : MonoBehaviour
         {
             TogglePause();
         }
+
+        KillCountText.text = "Killed: " + CurrentKillCount;
     }
+
+    // Player interactions
 
     public void PlayerHitByEnemy()
     {
+        if (IsDead)
+        {
+            return;
+        }
+
         CurrentPlayerHealth -= EnemyDamage;
+
         if (playerControllerScript.PlayerAnimator != null)
         {
             playerControllerScript.PlayerAnimator.SetTrigger("IsHit");
@@ -68,7 +95,9 @@ public class GameManager : MonoBehaviour
             {
                 playerControllerScript.PlayerAnimator.SetTrigger("IsDead");
             }
+            TitleSceneLoadDelay(DeathTime);
         }
+        HealthOrb.fillAmount = CurrentPlayerHealth / StartingPlayerHealth;
     }
 
     public void EnemyHitByPlayer()
@@ -89,24 +118,35 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public IEnumerator DestroyDelay(float delayTime)
+    public IEnumerator TitleSceneLoadDelay(float delayTime)
     {
         yield return new WaitForSeconds(delayTime);
+        SceneManager.LoadSceneAsync("Title");
     }
+
+ //   private IEnumerator SceneLoading(string sceneName)
+ //   {
+ //       if (loadingCanvas != null)
+//        {
+ //           loadingCanvas.SetActive(true);
+ //       }
+ //       AsyncOperation operation = SceneManager.LoadSceneAsync(sceneName);
+ //       operation.allowSceneActivation = false;
+ //      float timer = 0f;
+ //
+ //      while (!operation.isDone)
+ //      {
+ //          timer += Time.deltaTime;
+ //          if (operation.progress >= 0.9f)
+ //          {
+ //             // if (timer >= MinimumLoadTime)
+ //          }
+ //      }
+ //  }
 
     void LoadNextArea()
     {
         int nextAreaIndex = SceneManager.GetActiveScene().buildIndex + 1;
-
-        if (nextAreaIndex < SceneManager.sceneCountInBuildSettings)
-        {
-            SceneManager.LoadScene(nextAreaIndex);
-        }
-        else
-        {
-
-            // transition text appear here
-        }
     }
 
     // Menu stuff, all meant for button presses within the title
