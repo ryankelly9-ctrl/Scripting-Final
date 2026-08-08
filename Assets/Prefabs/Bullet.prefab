@@ -156,6 +156,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Bullet
   bulletSpeed: 15
   bulletLifetime: 5
+  audioSourceBullet: {fileID: 0}
+  arrow: {fileID: 8300000, guid: 19d78d0f3b60cea4e9a71be3b37b1ea3, type: 3}
 --- !u!1001 &4998009911173005611
 PrefabInstance:
   m_ObjectHideFlags: 0

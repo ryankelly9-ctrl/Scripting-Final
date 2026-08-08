@@ -18,6 +18,11 @@ public class Enemy : MonoBehaviour
     public bool enemyIsRunning;
     [SerializeField] private float destroyDelaySeconds;
 
+    [Header("Audio")]
+    [SerializeField] private AudioSource skeletonAudioSource;
+    [SerializeField] private AudioClip skeletonHit;
+    [SerializeField] private AudioClip skeletonCrumble;
+
     private void Awake()
     {
         navAgent = GetComponent<NavMeshAgent>();
@@ -40,13 +45,34 @@ public class Enemy : MonoBehaviour
         }
     }
 
+    public void PlaySounds()
+    {
+        skeletonAudioSource.PlayOneShot(skeletonCrumble);
+    }
+
     // When the bullet hits the enemy, deal damage to the enemy and if the enemy dies add score
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Bullet"))
         {
+            // Hit and death SFX
+
+            skeletonAudioSource.PlayOneShot(skeletonHit);
+            skeletonAudioSource.PlayOneShot(skeletonCrumble, destroyDelaySeconds);
+
+            // Death animation
+
+            if (EnemyAnimator != null)
+            {
+                EnemyAnimator.SetTrigger("EnemyIsDead");
+            }
+
+            // Score calculaations
+
             GameManager._GameManager.EnemyHitByPlayer();
-            Destroy(gameObject);
+
+            // Destruction on a delay to enable previous lines
+            Destroy(gameObject, destroyDelaySeconds);
         }
     }
 }

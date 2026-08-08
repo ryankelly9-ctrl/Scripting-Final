@@ -24,6 +24,7 @@ public class GameManager : MonoBehaviour
     public float PlayerWeaponDamage = 1;
     public float EnemyDamage = 1;
     public float DeathTime = 5.0f;
+    public float DestroyDelayTime = 0.25f;
 
     [Header ("Bools")]
     public bool IsDead;
@@ -113,10 +114,17 @@ public class GameManager : MonoBehaviour
             if (CurrentKillCount / killsPerArea > lastKillCap)
             {
                 lastKillCap = CurrentKillCount / killsPerArea;
-                LoadNextArea();
+                StartCoroutine(SceneLoading());
             }
         }
     }
+
+    public IEnumerator DestroyDelay(float seconds)
+    {
+        yield return new WaitForSeconds(seconds);
+    }
+
+    // Loading scenes methods
 
     public IEnumerator TitleSceneLoadDelay(float delayTime)
     {
@@ -124,25 +132,36 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadSceneAsync("Title");
     }
 
- //   private IEnumerator SceneLoading(string sceneName)
- //   {
- //       if (loadingCanvas != null)
-//        {
- //           loadingCanvas.SetActive(true);
- //       }
- //       AsyncOperation operation = SceneManager.LoadSceneAsync(sceneName);
- //       operation.allowSceneActivation = false;
- //      float timer = 0f;
- //
- //      while (!operation.isDone)
- //      {
- //          timer += Time.deltaTime;
- //          if (operation.progress >= 0.9f)
- //          {
- //             // if (timer >= MinimumLoadTime)
- //          }
- //      }
- //  }
+   private IEnumerator SceneLoading()
+   {
+      if (loadingCanvas != null)
+      {
+          loadingCanvas.SetActive(true);
+      }
+
+      int totalAreas = SceneManager.sceneCountInBuildSettings;
+      int nextBuildIndex = (SceneManager.GetActiveScene().buildIndex + 1) % totalAreas;
+
+      AsyncOperation operation = SceneManager.LoadSceneAsync(nextBuildIndex);
+
+      operation.allowSceneActivation = false;
+
+      float timer = 0f;
+
+      while (!operation.isDone)
+      {
+          timer += Time.unscaledDeltaTime;
+
+          if (operation.progress >= 0.9f && timer >= minimumLoadTime)
+          {
+              if (timer >= minimumLoadTime)
+                 {
+                    operation.allowSceneActivation = true;
+                 }
+          }
+          yield return null;
+      }
+  }
 
     void LoadNextArea()
     {
@@ -152,7 +171,7 @@ public class GameManager : MonoBehaviour
     // Menu stuff, all meant for button presses within the title
     public void StartButton()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        StartCoroutine(SceneLoading());
     }
 
     public void QuitButton()

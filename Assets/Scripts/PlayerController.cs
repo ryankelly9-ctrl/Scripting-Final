@@ -28,6 +28,10 @@ public class PlayerController : MonoBehaviour
     public Animator PlayerAnimator;
     private bool isRunning;
 
+    [Header("Audio")]
+    [SerializeField] private AudioSource audioSourcePlayer;
+    [SerializeField] private AudioClip arrow;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -114,6 +118,7 @@ public class PlayerController : MonoBehaviour
         }
         if (bulletPrefab != null)
         {
+            audioSourcePlayer.PlayOneShot(arrow);
             GameObject bullet = Instantiate(bulletPrefab, fireOrigin.position, fireOrigin.rotation);
         }
     }
